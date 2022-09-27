@@ -1,16 +1,21 @@
-import axios from "axios";
-import { ListCoins, RealTime } from "./urls";
-import { useEffect, useState } from "react";
+
 // import { TimeWise } from "./urls";
 import Pivot from './components/Pivot';
+import ListStock from './components/ListStock';
+import AllStocks from './components/AllStocks';
+import { BrowserRouter as Router, Routes, Route, Switch } from 'react-router-dom'
 
 function App() {
   
 
   return (
-    <div className="App">
-      <Pivot />
-    </div>
+    
+      <div>
+        <Pivot />
+        <ListStock />
+        <AllStocks />
+      </div>
+   
   );
 }
 

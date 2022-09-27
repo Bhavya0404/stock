@@ -21,13 +21,7 @@ const Pivot = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const fetchDateandTime = async () => {
-      const { data1 } = await axios.get(TimeWise());
-      console.log(data1);
-    };
-    fetchDateandTime();
-  }, []);
+  
 
   const woodiePivot = () => {
     let pp = (high + low + close) / 3;
