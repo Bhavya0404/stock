@@ -45,6 +45,7 @@ const Pivot = () => {
     let s4 = close - (high - low) * 1.5;
 
     console.log(s2);
+
   };
 
   const fibonacciPivot = () => {
