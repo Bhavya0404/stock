@@ -5,6 +5,8 @@ import ListStock from './components/ListStock';
 import AllStocks from './components/AllStocks';
 import { BrowserRouter as Router, Routes, Route, Switch } from 'react-router-dom'
 
+import CandleStick from './components/CandleStick'
+
 import { useEffect, useState } from "react";
 import PieChart from "./components/PieChart";
 import BarChart from "./components/BarChart";
@@ -35,6 +37,7 @@ function App() {
 
   return (
     <div className="App">
+      <CandleStick/>
       <Pivot/>
       <AllStocks/>
       <ListStock/>
