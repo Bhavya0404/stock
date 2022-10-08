@@ -12,6 +12,7 @@ import PieChart from "./components/PieChart";
 import BarChart from "./components/BarChart";
 import { UserData } from "./Data";
 import LineChart from "./components/LineChart";
+import Candle from "./components/Candle"
 
 function App() {
   const [userData, setUserData] = useState({
@@ -38,6 +39,7 @@ function App() {
   return (
     <div className="App">
       <CandleStick/>
+      <Candle />
       <Pivot/>
       <AllStocks/>
       <ListStock/>
