@@ -1,5 +1,6 @@
 
 // import { TimeWise } from "./urls";
+import './App.css'
 import Pivot from './components/Pivot';
 import ListStock from './components/ListStock';
 import AllStocks from './components/AllStocks';
@@ -13,6 +14,9 @@ import BarChart from "./components/BarChart";
 import { UserData } from "./Data";
 import LineChart from "./components/LineChart";
 import Candle from "./components/Candle"
+
+import Navbar from "./components/Navbar"
+import Home from './pages/Home';
 
 function App() {
   const [userData, setUserData] = useState({
@@ -38,7 +42,7 @@ function App() {
 
   return (
     <div className="App">
-      <CandleStick/>
+      {/* <CandleStick/>
       <Candle />
       <Pivot/>
       <AllStocks/>
@@ -51,7 +55,9 @@ function App() {
     </div>
     <div style={{ width: 700 }}>
       <PieChart chartData={userData} />
-    </div>
+    </div> */}
+    <Navbar />
+    <Home />
   </div>
  
    
