@@ -111,10 +111,34 @@ class CandleStick extends Component {
       const neww = data1.data["Time Series (5min)"];
       let sampleObjectKeys = Object.keys(neww);
       console.log("number of keys", sampleObjectKeys.length);
-      const len=sampleObjectKeys.length;
+      const len = sampleObjectKeys.length;
       var dps1 = [],
         dps2 = [],
         dps3 = [];
+
+      for (var key in neww) {
+        console.log(neww[key]["1. open"]);
+        dps1.push({
+          x: new Date(key),
+          y: [
+            Number(neww[key]["1. open"]),
+            Number(neww[key]["2. high"]),
+            Number(neww[key]["3. low"]),
+            Number(neww[key]["4. close"]),
+          ],
+        });
+        dps2.push({ x: new Date(key), y: Number(neww[key]["5. volume"]) });
+        dps3.push({ x: new Date(key), y: Number(neww[key]["4. close"]) });
+        this.setState({
+          isLoaded: true,
+          dataPoints1: dps1,
+          dataPoints2: dps2,
+          dataPoints3: dps3,
+        });
+      }
+    };
+    componentDidMount();
+
     //   for (var i = 0; i < len; i++) {
     //     dps1.push({
     //       x: new Date(data[i].date),
@@ -134,36 +158,6 @@ class CandleStick extends Component {
     //     dataPoints2: dps2,
     //     dataPoints3: dps3,
     //   });
-
-    for(var key in neww) {
-      
-      
-      console.log(neww[key]["1. open"])
-      dps1.push({
-              x: new Date(key),
-               y: [
-                 Number(neww[key]["1. open"]),
-                 Number(neww[key]["2. high"]),
-                 Number(neww[key]["3. low"]),
-                Number(neww[key]["4. close"]),
-               ],
-             });
-             dps2.push({ x: new Date(key), y: Number(neww[key]["5. volume"]) });
-                  dps3.push({ x: new Date(key), y: Number(neww[key]["4. close"]) });
-                  this.setState({
-                         isLoaded: true,
-                         dataPoints1: dps1,
-                         dataPoints2: dps2,
-                         dataPoints3: dps3,
-                       });
-  
-}
-     };
-     componentDidMount();
-
-
-
-    
 
     return (
       <div>
