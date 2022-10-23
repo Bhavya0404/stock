@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import CanvasJSReact from './canvasjs.stock.react';
 import CanvasJSReact from "../assets/canvas/canvasjs.stock.react";
 import axios from "axios";
-import { MonthWise } from "../urls";
+import { TimeWise } from "../urls";
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
 
@@ -106,7 +106,7 @@ class CandleStick extends Component {
     };
 
     const componentDidMount = async (data) => {
-      const data1 = await axios.get(MonthWise("IBM"));
+      const data1 = await axios.get(TimeWise("IBM"));
       console.log(data1.data["Monthly Adjusted Time Series"]);
       const neww = data1.data["Monthly Adjusted Time Series"];
       let sampleObjectKeys = Object.keys(neww);
