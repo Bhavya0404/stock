@@ -45,21 +45,13 @@ function App() {
 
   return (
     <div className="App">
-      <CandleStick />
-      <CandleStick2 />
+     
 
       <Pivot />
       <AllStocks />
       <ListStock />
-      <div style={{ width: 700 }}>
-        <BarChart chartData={userData} />
-      </div>
-      <div style={{ width: 700 }}>
-        <LineChart chartData={userData} />
-      </div>
-      <div style={{ width: 700 }}>
-        <PieChart chartData={userData} />
-      </div>
+
+
       <Navbar />
       <Home />
     </div>
