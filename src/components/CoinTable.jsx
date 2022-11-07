@@ -19,10 +19,12 @@ import { AllTheStocks, ListCoins } from "../urls";
 import { CryptoState } from "../CryptoContext";
 import { commaSeparate } from "../commaSeparate";
 import { useNavigate } from "react-router-dom";
+import { TopStocks } from "../urls";
 
 
 const   CoinTable = () => {
   const [coins, setCoins] = useState([]);
+  
   const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -30,9 +32,33 @@ const   CoinTable = () => {
   // const { currency, symbol } = CryptoState();
 
   const fetchCoins = async () => {
-    const { data } = await axios.get(AllTheStocks());
-    console.log(data);
-    setCoins(data);
+    const data1 = await axios.get(TopStocks());
+    //console.log(data1);
+    const neww=data1.data["ranking"];
+   
+    //console.log(neww);
+   
+       //  const neww = data1.data["Time Series (5min)"];
+         let sampleObjectKeys = Object.keys(neww);
+       //  console.log(sampleObjectKeys.length);
+         
+    
+         for(var key in neww) {
+           
+              // console.log(neww[key]["portfolio"])
+               const ne=neww[key]["portfolio"];
+              // console.log(ne);
+              for(var key1 in ne){
+               console.log(ne[key1]["symbol"]); //ye share ke naam h
+               console.log(ne[key1]["shares"]); //ye no. of share h dono ko screen pe dikhana h 
+
+              }
+   
+              
+           
+        }
+   
+   // setCoins(data);
     setIsLoading(false);
   };
 

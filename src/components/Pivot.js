@@ -16,7 +16,7 @@ const Pivot = () => {
       setLow(parseFloat(data.low));
       setHigh(parseFloat(data.high));
       setClose(parseFloat(data.close));
-      console.log(data);
+     // console.log(data);
     };
     fetchData();
   }, []);
@@ -30,7 +30,7 @@ const Pivot = () => {
     let s1 = 2 * pp - high;
     let s2 = pp - high + low;
 
-    console.log(s2);
+   // console.log(s2);
   };
 
   const camarillaPivot = () => {
@@ -44,7 +44,7 @@ const Pivot = () => {
     let s3 = close - (high - low) * 1.25;
     let s4 = close - (high - low) * 1.5;
 
-    console.log(s2);
+  //  console.log(s2);
 
   };
 
@@ -57,7 +57,7 @@ const Pivot = () => {
     let s1 = pp - (high - low) * 0.382;
     let s2 = pp - (high - low) * 0.618;
     let s3 = pp - (high - low) * 1.0;
-    console.log(s2);
+  //  console.log(s2);
   };
   return (
     <div>

@@ -107,10 +107,10 @@ class CandleStick extends Component {
 
     const componentDidMount = async (data) => {
       const data1 = await axios.get(MonthWise("IBM"));
-      console.log(data1.data["Monthly Adjusted Time Series"]);
+     // console.log(data1.data["Monthly Adjusted Time Series"]);
       const neww = data1.data["Monthly Adjusted Time Series"];
       let sampleObjectKeys = Object.keys(neww);
-      console.log("number of keys", sampleObjectKeys.length);
+     // console.log("number of keys", sampleObjectKeys.length);
       const len = sampleObjectKeys.length;
       var dps1 = [],
         dps2 = [],
@@ -136,7 +136,7 @@ class CandleStick extends Component {
       //   });
 
       for (var key in neww) {
-        console.log(neww[key]["1. open"]);
+      //  console.log(neww[key]["1. open"]);
         dps1.push({
           x: new Date(key),
           y: [
