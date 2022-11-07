@@ -21,7 +21,7 @@ class CandleStick extends Component {
     const options = {
       theme: "light2",
       title: {
-        text: "React StockChart with Date-Time Axis",
+        text: "Time Wise",
       },
       subtitles: [
         {
@@ -115,25 +115,7 @@ class CandleStick extends Component {
       var dps1 = [],
         dps2 = [],
         dps3 = [];
-    //   for (var i = 0; i < len; i++) {
-    //     dps1.push({
-    //       x: new Date(data[i].date),
-    //       y: [
-    //         Number(data[i].open),
-    //         Number(data[i].high),
-    //         Number(data[i].low),
-    //         Number(data[i].close),
-    //       ],
-    //     });
-    //     dps2.push({ x: new Date(data[i].date), y: Number(data[i].volume_usd) });
-    //     dps3.push({ x: new Date(data[i].date), y: Number(data[i].close) });
-    //   }
-    //   this.setState({
-    //     isLoaded: true,
-    //     dataPoints1: dps1,
-    //     dataPoints2: dps2,
-    //     dataPoints3: dps3,
-    //   });
+
 
     for(var key in neww) {
       

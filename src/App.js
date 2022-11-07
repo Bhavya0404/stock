@@ -45,12 +45,11 @@ function App() {
 
   return (
     <div className="App">
-     
+     <CandleStick/>
 
       <Pivot />
       <AllStocks />
       <ListStock />
-
 
       <Navbar />
       <Home />
