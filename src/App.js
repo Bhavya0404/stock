@@ -1,22 +1,27 @@
+import { TimeWise } from "./urls";
+import "./App.css";
+import Pivot from "./components/Pivot";
+import ListStock from "./components/ListStock";
+import AllStocks from "./components/AllStocks";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Switch,
+} from "react-router-dom";
 
-// import { TimeWise } from "./urls";
-import './App.css'
-import Pivot from './components/Pivot';
-import ListStock from './components/ListStock';
-import AllStocks from './components/AllStocks';
-import { BrowserRouter as Router, Routes, Route, Switch } from 'react-router-dom'
-
-import CandleStick from './components/CandleStick'
+import CandleStick from "./components/CandleStick";
+import CandleStick2 from "./components/CandleStick2";
 
 import { useEffect, useState } from "react";
 import PieChart from "./components/PieChart";
 import BarChart from "./components/BarChart";
 import { UserData } from "./Data";
 import LineChart from "./components/LineChart";
-import Candle from "./components/Candle"
+import Candle from "./components/Candle";
 
-import Navbar from "./components/Navbar"
-import Home from './pages/Home';
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
 
 function App() {
   const [userData, setUserData] = useState({
@@ -38,29 +43,17 @@ function App() {
     ],
   });
 
-  
-
   return (
     <div className="App">
-      {/* <CandleStick/>
-      <Candle />
-      <Pivot/>
-      <AllStocks/>
-      <ListStock/>
-    <div style={{ width: 700 }}>
-      <BarChart chartData={userData} />
+     <CandleStick/>
+
+      <Pivot />
+      <AllStocks />
+      <ListStock />
+
+      <Navbar />
+      <Home />
     </div>
-    <div style={{ width: 700 }}>
-      <LineChart chartData={userData} />
-    </div>
-    <div style={{ width: 700 }}>
-      <PieChart chartData={userData} />
-    </div> */}
-    <Navbar />
-    <Home />
-  </div>
- 
-   
   );
 }
 

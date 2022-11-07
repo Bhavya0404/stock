@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import CanvasJSReact from './canvasjs.stock.react';
 import CanvasJSReact from "../assets/canvas/canvasjs.stock.react";
 import axios from "axios";
-import { MonthWise } from "../urls";
+import { TimeWise } from "../urls";
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
 
@@ -21,7 +21,7 @@ class CandleStick extends Component {
     const options = {
       theme: "light2",
       title: {
-        text: "React StockChart with Date-Time Axis",
+        text: "Time Wise",
       },
       subtitles: [
         {
@@ -106,57 +106,46 @@ class CandleStick extends Component {
     };
 
     const componentDidMount = async (data) => {
-      const data1 = await axios.get(MonthWise("IBM"));
-     // console.log(data1.data["Monthly Adjusted Time Series"]);
-      const neww = data1.data["Monthly Adjusted Time Series"];
+      const data1 = await axios.get(TimeWise("IBM"));
+    //  console.log(data1.data["Time Series (5min)"]);
+      const neww = data1.data["Time Series (5min)"];
       let sampleObjectKeys = Object.keys(neww);
-     // console.log("number of keys", sampleObjectKeys.length);
-      const len = sampleObjectKeys.length;
+    //  console.log("number of keys", sampleObjectKeys.length);
+      const len=sampleObjectKeys.length;
       var dps1 = [],
         dps2 = [],
         dps3 = [];
-      //   for (var i = 0; i < len; i++) {
-      //     dps1.push({
-      //       x: new Date(data[i].date),
-      //       y: [
-      //         Number(data[i].open),
-      //         Number(data[i].high),
-      //         Number(data[i].low),
-      //         Number(data[i].close),
-      //       ],
-      //     });
-      //     dps2.push({ x: new Date(data[i].date), y: Number(data[i].volume_usd) });
-      //     dps3.push({ x: new Date(data[i].date), y: Number(data[i].close) });
-      //   }
-      //   this.setState({
-      //     isLoaded: true,
-      //     dataPoints1: dps1,
-      //     dataPoints2: dps2,
-      //     dataPoints3: dps3,
-      //   });
 
-      for (var key in neww) {
-      //  console.log(neww[key]["1. open"]);
-        dps1.push({
-          x: new Date(key),
-          y: [
-            Number(neww[key]["1. open"]),
-            Number(neww[key]["2. high"]),
-            Number(neww[key]["3. low"]),
-            Number(neww[key]["4. close"]),
-          ],
-        });
-        dps2.push({ x: new Date(key), y: Number(neww[key]["5. volume"]) });
-        dps3.push({ x: new Date(key), y: Number(neww[key]["4. close"]) });
-        this.setState({
-          isLoaded: true,
-          dataPoints1: dps1,
-          dataPoints2: dps2,
-          dataPoints3: dps3,
-        });
-      }
-    };
-    componentDidMount();
+
+    for(var key in neww) {
+      
+      
+     // console.log(neww[key]["1. open"])
+      dps1.push({
+              x: new Date(key),
+               y: [
+                 Number(neww[key]["1. open"]),
+                 Number(neww[key]["2. high"]),
+                 Number(neww[key]["3. low"]),
+                Number(neww[key]["4. close"]),
+               ],
+             });
+             dps2.push({ x: new Date(key), y: Number(neww[key]["5. volume"]) });
+                  dps3.push({ x: new Date(key), y: Number(neww[key]["4. close"]) });
+                  this.setState({
+                         isLoaded: true,
+                         dataPoints1: dps1,
+                         dataPoints2: dps2,
+                         dataPoints3: dps3,
+                       });
+  
+}
+     };
+     componentDidMount();
+
+
+
+    
 
     return (
       <div>
