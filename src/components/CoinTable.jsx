@@ -21,52 +21,41 @@ import { commaSeparate } from "../commaSeparate";
 import { useNavigate } from "react-router-dom";
 import { TopStocks } from "../urls";
 
-
-const   CoinTable = () => {
+const CoinTable = () => {
+  var allStocksArray = [];
   const [coins, setCoins] = useState([]);
-  
+
   const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
-
+  var temp = 0;
   // const { currency, symbol } = CryptoState();
 
   const fetchCoins = async () => {
     const data1 = await axios.get(TopStocks());
-    //console.log(data1);
-    const neww=data1.data["ranking"];
-   
-    //console.log(neww);
-   
-       //  const neww = data1.data["Time Series (5min)"];
-         let sampleObjectKeys = Object.keys(neww);
-       //  console.log(sampleObjectKeys.length);
-         
-    
-         for(var key in neww) {
-           
-              // console.log(neww[key]["portfolio"])
-               const ne=neww[key]["portfolio"];
-              // console.log(ne);
-              for(var key1 in ne){
-               console.log(ne[key1]["symbol"]); //ye share ke naam h
-               console.log(ne[key1]["shares"]); //ye no. of share h dono ko screen pe dikhana h 
+    const neww = data1.data["ranking"];
 
-              }
-   
-              
-           
-        }
-   
-   // setCoins(data);
+    for (var key in neww) {
+      // console.log(neww[key]["portfolio"])
+      const ne = neww[key]["portfolio"];
+      for (var key1 in ne) {
+        allStocksArray.push(ne[key1]);
+        //  console.log(ne[key1]["symbol"]); //ye share ke naam h
+        //  console.log(ne[key1]["shares"]); //ye no. of share h dono ko screen pe dikhana h
+      }
+    }
     setIsLoading(false);
   };
 
   useEffect(() => {
     fetchCoins();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setCoins(allStocksArray);
+    console.log(coins);
   }, []);
 
+  coins.map((x) => {
+    console.log(x.symbol);
+  });
   //   const handleSearch = () => {
   //     return coins.filter(
   //       (coin) =>
@@ -74,6 +63,9 @@ const   CoinTable = () => {
   //         coin.symbol.toLowerCase().includes(search)
   //     );
   //   };
+
+  const open = 0;
+  const close = 100;
 
   const darkTheme = createTheme({
     palette: {
@@ -84,24 +76,21 @@ const   CoinTable = () => {
     },
   });
 
-  // const handleSearch = () => {
-  //   return coins.filter(
-  //     (coin) =>
-  //       coin.name.toLowerCase().includes(search) ||
-  //       coin.symbol.toLowerCase().includes(search)
-  //   );
-  // };
+  const handleSearch = () => {
+    return coins.filter((coin) => coin.symbol.toLowerCase().includes(search));
+  };
 
   // const navigate = useNavigate();
 
   return (
+    // , backgroundColor: "#14161A"
     <ThemeProvider theme={darkTheme}>
       <Container style={{ textAlign: "center" }}>
         <Typography
           variant="h4"
           style={{ margin: 18, fontFamily: "Montserrat" }}
         >
-          Cryptocurrency Prices by Market Cap
+          Stock Prices by Market Cap
         </Typography>
         <TextField
           sx={{
@@ -111,7 +100,7 @@ const   CoinTable = () => {
           }}
           label="Search for Cryptos"
           variant="outlined"
-        //   onChange={(e) => setSearch(e.target.value)}
+          //   onChange={(e) => setSearch(e.target.value)}
         />
 
         <TableContainer>
@@ -139,113 +128,50 @@ const   CoinTable = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                <TableRow
-                  sx={{
-                    backgroundColor: "#16171a",
-                    cursor: "pointer",
-                    "&:hover": {
-                      backgroundColor: "#131111",
-                    },
-                    fontFamily: "Montserrat",
-                  }}
-                  key={coins.name}
-                >
-                  <TableCell
-                    component="th"
-                    scope="row"
-                    style={{ display: "flex", gap: 15 }}
-                  >
-                    <img
-                      src={coins?.image}
-                      alt={coins?.name}
-                      height="50px"
-                      style={{ marginBottom: 10 }}
-                    />
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                      <span
-                        style={{
-                          textTransform: "uppercase",
-                          fontSize: 22,
+                {coins
+                  .map((stock) => {
+                    return (
+                      <TableRow
+                        sx={{
+                          backgroundColor: "#16171a",
+                          cursor: "pointer",
+                          "&:hover": {
+                            backgroundColor: "#131111",
+                          },
+                          fontFamily: "Montserrat",
                         }}
+                        key={stock.symbol}
                       >
-                        {coins.symbol}
-                      </span>
-                      <span style={{ color: "darkgray" }}>{coins.name}</span>
-                    </div>
-                  </TableCell>
-
-                  <TableCell align="right">
-                    {"Rs"} {coins.open}
-                  </TableCell>
-
-                  <TableCell
-                    align="right"
-                    style={{
-                      color: coins?.close > coins?.open > 0 ? "green" : "red",
-                      fontWeight: 500,
-                    }}
-                  >
-                    {coins?.close > coins?.open && "+"}
-                    {coins?.close - coins?.open}%
-                  </TableCell>
-                  <TableCell align="right">
-                    {"Rs"} {coins?.open}M
-                  </TableCell>
-                </TableRow>
-
-                <TableRow
-                  sx={{
-                    backgroundColor: "#16171a",
-                    cursor: "pointer",
-                    "&:hover": {
-                      backgroundColor: "#131111",
-                    },
-                    fontFamily: "Montserrat",
-                  }}
-                  key={coins.name}
-                >
-                  <TableCell
-                    component="th"
-                    scope="row"
-                    style={{ display: "flex", gap: 15 }}
-                  >
-                    <img
-                      src={coins?.image}
-                      alt={coins?.name}
-                      height="50px"
-                      style={{ marginBottom: 10 }}
-                    />
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                      <span
-                        style={{
-                          textTransform: "uppercase",
-                          fontSize: 22,
-                        }}
-                      >
-                        {coins.symbol}
-                      </span>
-                      <span style={{ color: "darkgray" }}>{coins.name}</span>
-                    </div>
-                  </TableCell>
-
-                  <TableCell align="right">
-                    {"Rs"} {coins.open}
-                  </TableCell>
-
-                  <TableCell
-                    align="right"
-                    style={{
-                      color: coins?.close > coins?.open > 0 ? "green" : "red",
-                      fontWeight: 500,
-                    }}
-                  >
-                    {coins?.close > coins?.open && "+"}
-                    {coins?.close - coins?.open}%
-                  </TableCell>
-                  <TableCell align="right">
-                    {"Rs"} {coins?.open}M
-                  </TableCell>
-                </TableRow>
+                        <TableCell
+                          component="th"
+                          scope="row"
+                          style={{ display: "flex", gap: 15 }}
+                        >
+                          <img
+                            src={stock?.image}
+                            alt={stock?.symbol}
+                            height="50px"
+                            style={{ marginBottom: 10 }}
+                          />
+                          <div
+                            style={{ display: "flex", flexDirection: "column" }}
+                          >
+                            <span
+                              style={{
+                                textTransform: "uppercase",
+                                fontSize: 22,
+                              }}
+                            >
+                              {stock.symbol}
+                            </span>
+                            <span style={{ color: "darkgray" }}>
+                              {stock.symbol}
+                            </span>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
               </TableBody>
             </Table>
           )}

@@ -6,7 +6,7 @@ import AllStocks from "./components/AllStocks";
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
+  Route, 
   Switch,
 } from "react-router-dom";
 
@@ -45,7 +45,7 @@ function App() {
 
   return (
     <div className="App">
-     <CandleStick/>
+     {/* <CandleStick/> */}
 
       <Pivot />
       <AllStocks />
