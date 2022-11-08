@@ -28,15 +28,20 @@ const CoinTable = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
-  var temp = 0;
+ 
   // const { currency, symbol } = CryptoState();
 
   const fetchCoins = async () => {
     const data1 = await axios.get(TopStocks());
     const neww = data1.data["ranking"];
-
+    var temp = 0;
     for (var key in neww) {
+
       // console.log(neww[key]["portfolio"])
+      if(temp>5){
+        break;
+      }
+      temp=temp+3;
       const ne = neww[key]["portfolio"];
       for (var key1 in ne) {
         allStocksArray.push(ne[key1]);
@@ -50,12 +55,14 @@ const CoinTable = () => {
   useEffect(() => {
     fetchCoins();
     setCoins(allStocksArray);
-    console.log(coins);
-  }, []);
 
+    console.log(coins);
+   
+  }, []);
   coins.map((x) => {
     console.log(x.symbol);
   });
+ 
   //   const handleSearch = () => {
   //     return coins.filter(
   //       (coin) =>
