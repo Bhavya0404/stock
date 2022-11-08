@@ -13,7 +13,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Container, MenuItem, Select } from "@mui/material";
+import { Container, CssBaseline, MenuItem, Select } from "@mui/material";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
@@ -32,6 +32,7 @@ function DrawerAppBar(props) {
 
   return (
     <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
       <Box sx={{ display: "flex" }}>
         <AppBar component="nav">
           <Container>
@@ -53,7 +54,7 @@ function DrawerAppBar(props) {
                 <Select
                   variant="outlined"
                   style={{ width: 100, height: 40, marginRight: 15 }}
-                  value="INR"
+                  value="USD"
                   // onChange={(e) => setCurrency(e.target.value)}
                 >
                   <MenuItem value={"USD"}>USD</MenuItem>

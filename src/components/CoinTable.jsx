@@ -1,5 +1,6 @@
 import {
   Container,
+  CssBaseline,
   LinearProgress,
   Pagination,
   Tab,
@@ -12,7 +13,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { pink, purple } from '@mui/material/colors';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { AllTheStocks, ListCoins } from "../urls";
@@ -76,7 +78,7 @@ const CoinTable = () => {
       primary: {
         main: "#fff",
       },
-      mode: "dark",
+      mode: "dark"
     },
   });
 
@@ -89,6 +91,7 @@ const CoinTable = () => {
   return (
     // , backgroundColor: "#14161A"
     <ThemeProvider theme={darkTheme}>
+    <CssBaseline />
       <Container style={{ textAlign: "center" }}>
         <Typography
           variant="h4"

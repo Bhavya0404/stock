@@ -49,9 +49,9 @@ function App() {
     <div className="App">
      {/* <CandleStick/> */}
 
-      <Pivot />
+      {/* <Pivot />
       <AllStocks />
-      <ListStock />
+      <ListStock /> */}
 
       <Navbar />
       <Home />
