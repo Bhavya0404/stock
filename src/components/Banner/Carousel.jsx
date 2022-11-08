@@ -1,19 +1,16 @@
-
-
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 // import { CryptoState } from "../../CryptoContext";
 import AliceCarousel from "react-alice-carousel";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 
-import 'react-alice-carousel/lib/alice-carousel.css';
+import "react-alice-carousel/lib/alice-carousel.css";
 import { TopStocks } from "../../urls";
+import { commaSeparate } from "../../commaSeparate";
 
 const Carousel = () => {
-  
-
   var allStocksArray = [];
   const [coins, setCoins] = useState([]);
 
@@ -59,56 +56,65 @@ const Carousel = () => {
     },
   };
 
-  const items = ["hi"];
-  // console.log("hioio")
-  coins.map((x) => {
-    console.log(x.symbol)
-    items.push(x.symbol)
-  })
+  // const items = ["hi"];
+  // coins.map((x) => {
+  //   console.log(x.symbol)
+  //   items.push(x.symbol)
+  // })
 
-  console.log(items)
-  
+  // console.log(items)
 
-// CHANGE THIs
+  // CHANGE THIs
 
-// const items = trending.map((coin) => {
-//   let profit = coin?.price_change_percentage_24h >= 0;
+  const items = coins.map((coin) => {
+    let profit = coin?.shares >= 0;
 
-//   return (
-//     <Link className={classes.carouselItem} to={`/coins/${coin.id}`}>
-//       <img
-//         src={coin?.image}
-//         alt={coin.name}
-//         height="80"
-//         style={{ marginBottom: 10 }}
-//       />
-//       <span>
-//         {coin?.symbol}
-//         &nbsp;
-//         <span
-//           style={{
-//             color: profit > 0 ? "rgb(14, 203, 129)" : "red",
-//             fontWeight: 500,
-//           }}
-//         >
-//           {profit && "+"}
-//           {coin?.price_change_percentage_24h?.toFixed(2)}%
-//         </span>
-//       </span>
-//       <span style={{ fontSize: 22, fontWeight: 500 }}>
-//         {symbol} {commaSeparate(coin?.current_price.toFixed(2))}
-//       </span>
-//     </Link>
-//   );
-// });
- 
- 
+    return (
+      <Link
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          cursor: "pointer",
+          textTransform: "uppercase",
+          color: "white",
+        }}
+        to={`/coins/${coin.id}`}
+      >
+        <img
+          src={coin?.image}
+          alt={coin.symbol}
+          height="80"
+          style={{ marginBottom: 10 }}
+        />
+        <span>
+          {coin?.symbol}
+          &nbsp;
+          <span
+            style={{
+              color: profit > 0 ? "rgb(14, 203, 129)" : "red",
+              fontWeight: 500,
+            }}
+          >
+            {profit && "+"}
+            {coin?.shares?.toFixed(2)}%
+          </span>
+        </span>
+        <span style={{ fontSize: 22, fontWeight: 500 }}>
+          {coin.symbol} {commaSeparate(coin?.shares.toFixed(2))}
+        </span>
+      </Link>
+    );
+  });
+
   return (
-    <Box sx= {{
-        height: "50%",
-      display: "flex",
-      alignItems: "center",
-    }}>
+    <Box
+      sx={{
+        height: "250",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       <AliceCarousel
         mouseTracking
         infinite

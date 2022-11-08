@@ -18,7 +18,7 @@ import React, { useEffect, useState } from "react";
 import { AllTheStocks, ListCoins } from "../urls";
 import { CryptoState } from "../CryptoContext";
 import { commaSeparate } from "../commaSeparate";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom"
 import { TopStocks } from "../urls";
 
 const CoinTable = () => {
@@ -137,6 +137,7 @@ const CoinTable = () => {
                   .map((stock) => {
                     return (
                       <TableRow
+                        // onClick={() => navigate(`/coins/${stock.id}`, {replace: true})}
                         sx={{
                           backgroundColor: "#16171a",
                           cursor: "pointer",
@@ -145,7 +146,7 @@ const CoinTable = () => {
                           },
                           fontFamily: "Montserrat",
                         }}
-                        // key={stock.symbol}
+                        key={stock.symbol}
                       >
                         <TableCell
                           component="th"

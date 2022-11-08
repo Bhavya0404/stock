@@ -19,6 +19,8 @@ import BarChart from "./components/BarChart";
 import { UserData } from "./Data";
 import LineChart from "./components/LineChart";
 import Candle from "./components/Candle";
+import { BrowserRouter } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";

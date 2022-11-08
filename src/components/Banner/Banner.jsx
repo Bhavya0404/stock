@@ -11,7 +11,7 @@ const Banner = () => {
         backgroundPosition: 'center',
         width: "100%",
         color: 'white',
-        mt: 7.06
+        mt: 0.6
       }}>
         <Container sx={{
             height: 400,
