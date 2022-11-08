@@ -25,7 +25,7 @@ const CoinTable = () => {
   var allStocksArray = [];
   const [coins, setCoins] = useState([]);
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
@@ -69,8 +69,7 @@ const CoinTable = () => {
   //     );
   //   };
 
-  const open = 0;
-  const close = 100;
+
 
   const darkTheme = createTheme({
     palette: {
@@ -184,13 +183,13 @@ const CoinTable = () => {
                           align="right"
                           style={{
                             color:
-                              stock?.shares > stock?.shares > 0
+                              stock?.shares > stock?.shares + 1 > 0
                                 ? "green"
                                 : "red",
                             fontWeight: 500,
                           }}
                         >
-                          {stock?.shares > stock?.shares && "+"}
+                          {stock?.shares > stock?.shares + 1 && "+"}
                           {stock?.shares - stock?.shares}%
                         </TableCell>
                         <TableCell align="right">
