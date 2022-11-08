@@ -1,6 +1,6 @@
 
 
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 // import { CryptoState } from "../../CryptoContext";
 import AliceCarousel from "react-alice-carousel";
@@ -9,23 +9,46 @@ import { Link} from "react-router-dom";
 import Box from "@mui/material/Box";
 
 import 'react-alice-carousel/lib/alice-carousel.css';
-import { ListCoins } from "../../urls";
+import { TopStocks } from "../../urls";
 
 const Carousel = () => {
   
 
+  var allStocksArray = [];
+  const [coins, setCoins] = useState([]);
 
-  const [coin, setTrending] = React.useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
 
-  const fetchTrendingCryptos = async () => {
-    const { data } = await axios.get(ListCoins('AAPL'));
-    setTrending(data);
+  // const { currency, symbol } = CryptoState();
+
+  const fetchCoins = async () => {
+    const data1 = await axios.get(TopStocks());
+    const neww = data1.data["ranking"];
+    var temp = 0;
+    for (var key in neww) {
+      // console.log(neww[key]["portfolio"])
+      if (temp > 5) {
+        break;
+      }
+      temp = temp + 3;
+      const ne = neww[key]["portfolio"];
+      for (var key1 in ne) {
+        allStocksArray.push(ne[key1]);
+        //  console.log(ne[key1]["symbol"]); //ye share ke naam h
+        //  console.log(ne[key1]["shares"]); //ye no. of share h dono ko screen pe dikhana h
+      }
+    }
+    setIsLoading(false);
   };
 
   useEffect(() => {
-    fetchTrendingCryptos();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchCoins();
+    setCoins(allStocksArray);
   }, []);
+
+  console.log(coins);
 
   const responsive = {
     0: {
@@ -36,9 +59,17 @@ const Carousel = () => {
     },
   };
 
-  const items = ["hi", "bye", "hello"]
+  const items = ["hi"];
+  // console.log("hioio")
+  coins.map((x) => {
+    console.log(x.symbol)
+    items.push(x.symbol)
+  })
 
-// CHANGE THIS
+  console.log(items)
+  
+
+// CHANGE THIs
 
 // const items = trending.map((coin) => {
 //   let profit = coin?.price_change_percentage_24h >= 0;
